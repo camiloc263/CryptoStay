@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pago • HotelSys</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <!-- favicon pending -->
+  <link rel="stylesheet" href="/app/css/admin.css" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.16.0/dist/ethers.umd.min.js"></script>
+</head>
+<body class="pay-page">
+  <div class="pay-shell">
+    <div class="pay-top">
+      <a class="pay-back" href="#" id="btn-back-panel">
+        <i class="fa-solid fa-arrow-left"></i>
+        <span>Volver al panel</span>
+      </a>
+      <div class="pay-title">Pago de reserva</div>
+      <div class="pay-pill" id="pay-status">Cargando…</div>
+    </div>
+
+    <div class="pay-grid">
+      <div class="pay-card" id="pay-card">
+        <!-- injected -->
+      </div>
+
+      <div class="pay-card pay-card-actions">
+        <div class="pay-card-head">
+          <div class="pay-h">Pagar</div>
+          <div class="pay-sub">Elige el método. Se registrará el txHash en el sistema.</div>
+        </div>
+
+        <div class="pay-actions" id="pay-actions">
+          <button id="btn-pay-eth" class="hs-act hs-act-dark" type="button">
+            <i class="fa-brands fa-ethereum"></i>
+            <div class="hs-act-text">
+              <div class="hs-act-title">Pagar con ETH</div>
+              <div class="hs-act-sub" id="eth-sub">—</div>
+            </div>
+          </button>
+
+          <button id="btn-pay-usdc" class="hs-act hs-act-primary" type="button">
+            <i class="fa-solid fa-circle-dollar-to-slot"></i>
+            <div class="hs-act-text">
+              <div class="hs-act-title">Pagar con mUSDC</div>
+              <div class="hs-act-sub" id="usdc-sub">—</div>
+            </div>
+          </button>
+        </div>
+
+        <div class="pay-paid" id="pay-paid" style="display:none">
+          <button id="btn-invoice" class="hs-act hs-act-info" type="button">
+            <i class="fa-solid fa-file-invoice"></i>
+            <div class="hs-act-text">
+              <div class="hs-act-title">Ver factura</div>
+              <div class="hs-act-sub">Imprimir o guardar</div>
+            </div>
+          </button>
+        </div>
+
+        <div class="pay-note">
+          <b>Nota:</b> En esta demo, mUSDC vale 1 USD.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/app/js/core/namespace.js"></script>
+  <script src="/app/js/utils/formatters.js"></script>
+  <script src="/app/js/core/apiClient.js"></script>
+  <script src="/app/js/core/clients.js"></script>
+  <script src="/app/js/core/session.js"></script>
+  <script src="/app/js/web3/web3Client.js?v=20260211-1311"></script>
+  <script src="/app/js/web3/contractSelector.js?v=20260211-1311"></script>
+  <script src="/app/js/web3/paymentFacade.js?v=20260211-1311"></script>
+  <script src="/app/js/ui/sessionGate.js"></script>
+  <script src="/app/js/pago.js?v=20260211-1311"></script>
+</body>
+</html>
+
+
+

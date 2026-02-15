@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HotelSys • Inicio</title>
+  <!-- favicon pending -->
+  <link rel="stylesheet" href="/app/css/admin.css" />
+  <style>
+    .hs-home {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 40px 16px;
+    }
+    .hs-home-card{
+      width: 100%;
+      max-width: 720px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow-md);
+      padding: 28px;
+    }
+    .hs-home-title{font-weight:950;font-size:28px;margin:0 0 6px;color:var(--text-main)}
+    .hs-home-sub{color:var(--text-muted);margin:0 0 18px}
+    .hs-home-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media (max-width:720px){.hs-home-grid{grid-template-columns:1fr}}
+    .hs-home-btn{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      padding:16px 18px;border-radius:14px;
+      border:1px solid var(--border);
+      background:#f8fafc;
+      text-decoration:none;
+      color:var(--text-main);
+      font-weight:900;
+      transition:.2s;
+    }
+    .hs-home-btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);border-color:var(--accent)}
+    .hs-home-meta{font-size:13px;color:var(--text-muted);font-weight:700}
+  </style>
+</head>
+<body class="pay-page">
+  <div class="hs-home">
+    <div class="hs-home-card">
+      <h1 class="hs-home-title">HotelSys</h1>
+      <p class="hs-home-sub">Elige dónde quieres entrar.</p>
+
+      <div class="hs-home-grid">
+        <a class="hs-home-btn" href="./admin.html">
+          <div>
+            <div>Panel Admin</div>
+            <div class="hs-home-meta">Administración • Reservas • Limpieza</div>
+          </div>
+          <div>→</div>
+        </a>
+
+        <a class="hs-home-btn" href="./cliente.html">
+          <div>
+            <div>Panel Huésped</div>
+            <div class="hs-home-meta">Mis reservas • Pagar • Cancelar</div>
+          </div>
+          <div>→</div>
+        </a>
+      </div>
+
+      <p class="hs-home-meta" style="margin-top:16px">Tip: también puedes ir directo a <b>/app/admin.html</b> o <b>/app/pago.html</b>.</p>
+    </div>
+  </div>
+</body>
+</html>

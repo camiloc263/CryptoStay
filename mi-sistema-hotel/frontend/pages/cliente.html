@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HotelSys • Huésped</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="/app/css/admin.css" />
+  <style>
+    .hs-ai-wrap{max-width:1100px;margin:0 auto;padding:12px}
+    .hs-ai-card{background:#fff;border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow-sm);padding:16px}
+    .hs-ai-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+    .hs-ai-title{font-weight:950;font-size:18px;color:var(--text-main)}
+    .hs-ai-sub{color:var(--text-muted);font-size:13px;font-weight:700;margin-top:2px}
+    .hs-ai-btn{border:1px solid var(--border);background:#0f172a;color:#fff;border-radius:12px;padding:10px 12px;font-weight:900;cursor:pointer}
+    .hs-ai-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1.5fr;gap:10px;margin-top:12px}
+    @media(max-width:920px){.hs-ai-grid{grid-template-columns:1fr 1fr}}
+    .hs-ai-label{font-size:12px;font-weight:900;color:var(--text-muted);margin-bottom:6px}
+    .hs-ai-select{width:100%;border:1px solid var(--border);border-radius:12px;padding:10px 12px;font-weight:800}
+    .hs-ai-chips{display:flex;flex-wrap:wrap;gap:8px}
+    .hs-ai-chip{border:1px solid var(--border);background:#f8fafc;border-radius:999px;padding:8px 10px;font-weight:900;font-size:12px;cursor:pointer}
+    .hs-ai-chip.on{border-color:var(--accent);background:rgba(59,130,246,.12)}
+
+    .hs-ai-section{margin-top:14px}
+    .hs-ai-h{font-weight:950;font-size:16px;margin:0 0 8px}
+    .hs-ai-recs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    @media(max-width:980px){.hs-ai-recs{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:640px){.hs-ai-recs{grid-template-columns:1fr}}
+
+    .hs-ai-room{background:#fff;border:1px solid var(--border);border-radius:18px;overflow:hidden;box-shadow:var(--shadow-sm)}
+    .hs-ai-room-img{height:120px;background:#e5e7eb;background-size:cover;background-position:center}
+    .hs-ai-room-body{padding:12px}
+    .hs-ai-room-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+    .hs-ai-room-title{font-weight:950}
+    .hs-ai-room-price{color:var(--text-muted);font-weight:800;font-size:13px;margin-top:2px}
+    .hs-ai-badge{background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.35);color:#166534;font-weight:950;font-size:11px;border-radius:999px;padding:6px 10px}
+    .hs-ai-room-desc{margin-top:8px;color:var(--text-muted);font-weight:700;font-size:12px;min-height:34px}
+    .hs-ai-reasons{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+    .hs-ai-reason{font-size:11px;font-weight:900;border:1px solid var(--border);border-radius:999px;padding:6px 8px;background:#f8fafc;color:#0f172a}
+    .hs-ai-room-actions{margin-top:10px;display:flex;gap:8px}
+    .hs-ai-btn2{border:1px solid var(--border);background:#fff;border-radius:12px;padding:9px 12px;font-weight:950;cursor:pointer}
+    .hs-ai-btn2:hover{border-color:var(--accent);box-shadow:var(--shadow-sm)}
+    .hs-ai-empty{color:var(--text-muted);font-weight:800}
+
+    .hs-ai-modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.45);backdrop-filter:blur(2px);display:grid;place-items:center;z-index:9999;padding:16px}
+    .hs-ai-modal{width:100%;max-width:720px;background:#fff;border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow-lg);padding:14px}
+    .hs-ai-room-actions{display:flex;gap:8px;flex-wrap:wrap}
+    .hs-ai-room-actions .hs-ai-btn2:nth-child(2){background:#0f172a;color:#fff;border-color:#0f172a}
+    .hs-ai-room-actions .hs-ai-btn2:nth-child(2):hover{opacity:.92}
+  </style>
+</head>
+<body class="pay-page">
+  <div class="pay-shell">
+    <div class="pay-top">
+      <a class="pay-back" href="/app/">
+        <i class="fa-solid fa-arrow-left"></i>
+        <span>Volver al inicio</span>
+      </a>
+      <div class="pay-title">Panel Huésped</div>
+      <div class="pay-pill">AI-lite</div>
+    </div>
+
+    <div class="hs-ai-wrap">
+      <div id="hs-prefs"></div>
+
+      <div class="hs-ai-section">
+        <h3 class="hs-ai-h">Recomendadas para ti</h3>
+        <div id="hs-recs" class="hs-ai-recs"></div>
+      </div>
+
+      <div class="hs-ai-section">
+        <div class="pay-note">
+          Tip: estas recomendaciones aprenden de tus preferencias y de las habitaciones que vas viendo.
+          Si ya tienes sesión (admin/login), se sincroniza a MySQL automáticamente.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/app/js/core/namespace.js"></script>
+  <script src="/app/js/utils/formatters.js"></script>
+  <script src="/app/js/core/apiClient.js"></script>
+  <script src="/app/js/core/clients.js"></script>
+  <script src="/app/js/core/session.js"></script>
+
+  <script src="/app/js/ai/prefsStore.js"></script>
+  <script src="/app/js/ai/recommender.js"></script>
+  <script src="/app/js/ai/prefsQuiz.js"></script>
+  <script src="/app/js/cliente.js"></script>
+</body>
+</html>
