@@ -1,0 +1,254 @@
+/* Contenedor Principal */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px 50px;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border-color); /* Borde sutil */
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--primary); /* Usa la variable */
+  letter-spacing: -1px;
+}
+
+.btnConnect {
+  background: var(--foreground); /* Invierte el color según el tema */
+  color: var(--background);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.2s;
+}
+
+.btnConnect:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.walletBadge {
+  background: var(--card-bg);
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  font-weight: 600;
+  color: var(--primary);
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 60px 0;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: var(--foreground);
+}
+
+.highlight {
+  color: var(--primary);
+}
+
+/* Panel de Dueño */
+.ownerPanel {
+  background: var(--card-bg); /* Se adapta al modo oscuro */
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  margin-bottom: 40px;
+  border: 1px solid var(--border-color);
+}
+
+.formGroup {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  background: var(--background);
+  color: var(--foreground);
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+}
+
+.input:focus {
+  border-color: var(--primary);
+}
+
+.priceInput {
+  position: relative;
+  width: 120px;
+}
+
+.priceInput input {
+  width: 100%;
+  padding-right: 35px;
+}
+
+.currency {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  color: #888;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.btnPublish {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 0 25px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Grid de Habitaciones */
+.roomsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.roomCard {
+  background: var(--card-bg); /* IMPORTANTE: Tarjeta oscura en modo oscuro */
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
+  border: 1px solid var(--border-color);
+}
+
+.roomCard:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary);
+}
+
+.roomImage {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  background-color: var(--border-color);
+}
+
+.badgeBooked {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
+  color: #ff5252;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  backdrop-filter: blur(4px);
+}
+
+.roomDetails {
+  padding: 20px;
+}
+
+.roomDetails h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.price {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--foreground);
+}
+
+.btnBook {
+  width: 100%;
+  padding: 12px;
+  background: var(--foreground); /* Botón blanco en modo oscuro */
+  color: var(--background);      /* Texto negro en modo oscuro */
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btnBook:hover {
+  opacity: 0.8;
+}
+
+.btnDisabled {
+  width: 100%;
+  padding: 12px;
+  background: var(--border-color);
+  color: #888;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: not-allowed;
+}
+
+/* Utilidades */
+.emptyState {
+  text-align: center;
+  grid-column: 1 / -1;
+  color: #888;
+  font-size: 18px;
+}
+
+/* ... (El resto de notificaciones y loading se mantienen igual) ... */
+.notification {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  padding: 15px 25px;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  z-index: 1000;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  animation: slideIn 0.3s ease;
+}
+
+.success { background: var(--primary); }
+.error { background: var(--danger); }
+
+.loadingOverlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente */
+  display: flex; justify-content: center; align-items: center; z-index: 2000;
+  backdrop-filter: blur(5px);
+}
+
+.spinner {
+  width: 40px; height: 40px;
+  border: 4px solid rgba(255,255,255,0.3);
+  border-top: 4px solid var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
